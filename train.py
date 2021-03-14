@@ -12,7 +12,9 @@ from core.utils import freeze_all, unfreeze_all
 
 flags.DEFINE_string('model', 'yolov4', 'yolov4, yolov3')
 flags.DEFINE_string('weights', './scripts/yolov4.weights', 'pretrained weights')
+flags.DEFINE_string('dataset_type', 'converted_coco', 'converted_coco or yolo')
 flags.DEFINE_boolean('tiny', False, 'yolo or yolo-tiny')
+
 
 def main(_argv):
     physical_devices = tf.config.experimental.list_physical_devices('GPU')
