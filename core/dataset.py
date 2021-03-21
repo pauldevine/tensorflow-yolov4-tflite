@@ -38,6 +38,9 @@ class Dataset(object):
         self.annotations = self.load_annotations()
         self.num_samples = len(self.annotations)
         self.num_batchs = int(np.ceil(self.num_samples / self.batch_size))
+        print('dataset debugging num_classes: ',self.num_classes,
+              ' num_samples: ', self.num_samples,
+              ' num_batches: ', self.num_batchs)
         self.batch_count = 0
 
     def load_annotations(self):

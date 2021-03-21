@@ -18,8 +18,8 @@ flags.DEFINE_boolean('tiny', False, 'yolo or yolo-tiny')
 
 def main(_argv):
     physical_devices = tf.config.experimental.list_physical_devices('GPU')
-    if len(physical_devices) > 0:
-        tf.config.experimental.set_memory_growth(physical_devices[0], True)
+    #if len(physical_devices) > 0:
+    #    tf.config.experimental.set_memory_growth(physical_devices[0], True)
 
     trainset = Dataset(FLAGS, is_training=True)
     testset = Dataset(FLAGS, is_training=False)
@@ -31,6 +31,9 @@ def main(_argv):
     global_steps = tf.Variable(1, trainable=False, dtype=tf.int64)
     warmup_steps = cfg.TRAIN.WARMUP_EPOCHS * steps_per_epoch
     total_steps = (first_stage_epochs + second_stage_epochs) * steps_per_epoch
+    print('++++++++++++++++++++++++++')
+    print('total_steps: {}, first_stage_epochs: {}, second_stage_epochs: {}, steps_per_epoch: {}'.format(
+          total_steps, first_stage_epochs,second_stage_epochs, steps_per_epoch))
     # train_steps = (first_stage_epochs + second_stage_epochs) * steps_per_period
 
     input_layer = tf.keras.layers.Input([cfg.TRAIN.INPUT_SIZE, cfg.TRAIN.INPUT_SIZE, 3])
